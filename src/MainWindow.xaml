@@ -1,0 +1,163 @@
+﻿<Window x:Class="PhiPdfRag.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PhiPdfRag"
+        Title="RAG with Phi 3"
+        Width="1600"
+        Height="900"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+>
+    <Grid Loaded="Grid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid
+         x:Name="IndexPDFProgressStackPanel"
+         MaxWidth="480"
+         Margin="16"
+         Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ui:TextBlock
+             x:Name="IndexPDFProgressTextBlock"
+             Grid.Row="1"
+             Margin="4"
+             HorizontalAlignment="Center"
+              />
+            <ProgressBar
+             x:Name="IndexPDFProgressBar"
+             Grid.Row="0"
+             Height="8"
+             Margin="12"
+             HorizontalAlignment="Stretch" />
+        </Grid>
+        <ScrollViewer Padding="16" Grid.Row="1">
+            <ui:TextBlock FontSize="18" TextWrapping="WrapWithOverflow">
+             <Run x:Name="PagesUsedRun" FontWeight="SemiBold" />
+             <LineBreak />
+             <LineBreak /><Run x:Name="AnswerRun" />
+            </ui:TextBlock>
+        </ScrollViewer>
+        <Grid
+         x:Name="ChatGrid"
+         Visibility="Collapsed"
+         Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border
+             Grid.RowSpan="3"
+             Grid.ColumnSpan="2"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             
+             BorderThickness="0,1,0,0" />
+            <TextBox
+             x:Name="SearchTextBox"
+             Grid.RowSpan="2"
+             Margin="16,16,16,16"
+             VerticalAlignment="Stretch"
+             FontSize="18"
+             Text="Search PDF..."
+             GotFocus="SearchTextBox_GotFocus"
+             LostFocus="SearchTextBox_LostFocus"
+             TextWrapping="Wrap" />
+            <ui:Button
+             x:Name="AskSLMButton"
+             Grid.Column="1"
+             Margin="0,16,16,8"
+             HorizontalAlignment="Stretch"
+             Click="AskSLMButton_Click"
+             Content="Answer"
+             IsEnabled="False"
+             />
+            <Button
+             x:Name="ShowPDFPage"
+             Grid.Row="1"
+             Grid.Column="1"
+             Margin="0,0,16,16"
+             HorizontalAlignment="Stretch"
+             Click="ShowPDFPage_Click"
+             Content="Show page"
+             IsEnabled="False" />
+        </Grid>
+        <Grid
+         x:Name="PdfImageGrid"
+         Grid.RowSpan="3"
+         Grid.ColumnSpan="2"
+         Background="#88000000"
+         Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image
+             x:Name="PdfImage"
+             Grid.Column="1"
+             Margin="0,16"
+             MouseLeftButtonDown="PdfImage_Tapped"
+             Stretch="Uniform" />
+            <Button
+             x:Name="PreviousPageButton"
+             Grid.Column="0"
+             Margin="16"
+             HorizontalAlignment="Right"
+             VerticalAlignment="Center"
+             Click="PreviousPageButton_Click"
+             Content="&lt;" />
+            <Button
+             x:Name="NextPageButton"
+             Grid.Column="2"
+             Margin="16"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+             Click="NextPageButton_Click"
+             Content="&gt;" />
+            <TextBlock
+             x:Name="PageNumberTextBlock"
+             Grid.Column="2"
+             Margin="16"
+             HorizontalAlignment="Right"
+             VerticalAlignment="Bottom"
+             FontWeight="Bold"
+             Foreground="White" />
+        </Grid>
+        <Grid
+         x:Name="IndexPDFGrid"
+         Grid.RowSpan="3"
+         Grid.ColumnSpan="2"
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ui:TextBlock Text="PDF Analyzer 2024 - Home Edition" />
+            <ui:Button
+             x:Name="IndexPDFButton"
+             Grid.Row="1"
+             Margin="16,16,16,0"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Center"
+             Click="IndexPDFButton_Click"
+             Content="Select a PDF"
+             IsEnabled="False"
+             />
+        </Grid>
+    </Grid>
+</Window>
