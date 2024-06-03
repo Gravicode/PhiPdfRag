@@ -2,8 +2,8 @@
 This is Local RAG Chat to Pdf File using SLM Model: Phi 3
 
 Requirements
-Visual Studio 2022
-.NET 8 or Higher
+- Visual Studio 2022
+- .NET 8 or Higher
 
 Downloading Models
 You also need to download and extract the two models to the correct folders.
@@ -21,7 +21,7 @@ Phi-3-mini-4k-instruct-onnx has 3 different versions inside it's repo. We are us
 You don't need to modify the project, as it is already including all the files in the onnx-models folder to the output directory.
 
 The final folder structure should look like this:
-
+```
 PDFAnalyzer
 │   onnx-models
 │   ├── all-MiniLM-L6-v2
@@ -36,3 +36,4 @@ PDFAnalyzer
 │   │   ├── tokenizer_config.json
 │   │   ├── tokenizer.json
 │   │   ├── tokenizer.model
+```
